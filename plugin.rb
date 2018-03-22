@@ -1,6 +1,6 @@
 # name: df-ask
 # about: «Ask me a question» plugin
-# version: 0.0.1
+# version: 0.0.2
 # authors: Dmitry Fedyuk
 # url: https://github.com/discourse-pro/df-ask
 register_asset 'stylesheets/main.scss'
