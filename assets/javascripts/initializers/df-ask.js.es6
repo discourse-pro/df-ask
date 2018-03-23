@@ -18,7 +18,20 @@ export default {name: 'df-ask', initialize() {withPluginApi('0.1', api => {
 		@computed('action', 'post', 'topic', 'topic.title')
 		replyOptions(action, post, topic, topicTitle) {return Object.assign(
 			this._super(action, post, topic, topicTitle), {dfActionTitle: this.get('metaData.df.actionTitle')}
-		);}
+		);},
+		serialize(serializer, dest) {
+			var r = this._super(serializer, dest);
+			const rec = this.get('metaData.df.recipient');
+			if (rec) {
+				if (r.raw) {
+					r.raw = '@' + rec + "\n" + r.raw;
+				}
+				if (r.cooked) {
+					r.cooked = '@' + rec + '<br/>' + r.cooked;
+				}
+			}
+			return r;
+		}
 	});
 	ComposerActionTitle.reopen({
 	   /**
