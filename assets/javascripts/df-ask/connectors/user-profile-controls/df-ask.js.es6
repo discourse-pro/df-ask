@@ -15,11 +15,11 @@ export default {
 			// I implemented it by analogy with
 			// https://github.com/discourse/discourse/blob/v2.0.0.beta4/app/assets/javascripts/discourse/routes/application.js.es6#L56-L69
 			return composerController.open({
-				action: Composer.PRIVATE_MESSAGE
-				,archetypeId: 'private_message'
-				,draftKey: 'new_private_message'
+				action: Composer.CREATE_TOPIC
+				,dfActionTitle: I18n.t('df_ask.composer_action_title')
+				,draftKey: Composer.CREATE_TOPIC //'df_ask'
+				,draftSequence: 0
 				,reply: null
-				,usernames: ''
 			});
 		}
 	}
