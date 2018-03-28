@@ -10,8 +10,7 @@ export default {
 			// https://github.com/vinkashq/discourse-content_lockers/blob/8996e438/assets/javascripts/discourse/lib/show-lockable-modal.js.es6#L3-L8
 			const container = Discourse.__container__;
 			const route = container.lookup('route:application');
-    		const composerController = route.controllerFor('composer');
-    		const user = this.get('args.model');
+			const composerController = route.controllerFor('composer');
 			// 2018-03-28
 			// «How to programmatucally check in JavaScript
 			// whether the current Discourse user is authenticated?» https://discourse.pro/t/76

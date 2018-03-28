@@ -23,11 +23,17 @@ export default {name: 'df-ask', initialize() {withPluginApi('0.1', api => {
 			var r = this._super(serializer, dest);
 			const rec = this.get('metaData.df.recipient');
 			if (rec) {
+				// 2018-03-28
+				// «User mention come in the beginning of the text question.
+				// Can we make it after it (in the end of the text)?»
+				// https://github.com/discourse-pro/df-ask/issues/1
+				const mention = (content, d) => [content, d, d, '@', rec].join('');
 				if (r.raw) {
-					r.raw = '@' + rec + "\n" + r.raw;
+					r.raw = mention(r.raw.trim(), "\n");
 				}
 				if (r.cooked) {
-					r.cooked = '@' + rec + '<br/>' + r.cooked;
+					// 2018-03-28 The cookied text is already trimmed.
+					r.cooked = mention(r.cooked, '<br/>');
 				}
 			}
 			return r;
