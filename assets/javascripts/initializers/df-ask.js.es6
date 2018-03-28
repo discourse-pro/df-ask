@@ -1,11 +1,11 @@
-import Composer from 'discourse/models/composer';
+import ComposerModel from 'discourse/models/composer';
 import ComposerActionTitle from 'discourse/components/composer-action-title';
 import ComposerController from 'discourse/controllers/composer';
 import {withPluginApi} from 'discourse/lib/plugin-api';
 import computed from 'ember-addons/ember-computed-decorators';
 export default {name: 'df-ask', initialize() {withPluginApi('0.1', api => {
 	// 2016-12-21 https://guides.emberjs.com/v2.4.0/object-model/reopening-classes-and-instances
-	Composer.reopen({
+	ComposerModel.reopen({
 		/**
 		 * 2018-03-23
 		 * @override
@@ -20,6 +20,7 @@ export default {name: 'df-ask', initialize() {withPluginApi('0.1', api => {
 			this._super(action, post, topic, topicTitle), {dfActionTitle: this.get('metaData.df.actionTitle')}
 		);},
 		serialize(serializer, dest) {
+			debugger;
 			var r = this._super(serializer, dest);
 			const rec = this.get('metaData.df.recipient');
 			if (rec) {
