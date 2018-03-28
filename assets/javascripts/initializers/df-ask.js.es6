@@ -27,7 +27,13 @@ export default {name: 'df-ask', initialize() {withPluginApi('0.1', api => {
 				// «User mention come in the beginning of the text question.
 				// Can we make it after it (in the end of the text)?»
 				// https://github.com/discourse-pro/df-ask/issues/1
-				const mention = (content, d) => [content, d, d, '@', rec].join('');
+				const mention = (content, d) => [content, d, d,
+					// 2018-03-28
+					// «As mentioned in image there should be a sentence saying "question to"
+					// (This sentence will be translated)»:
+					// https://github.com/discourse-pro/df-ask/issues/2
+					I18n.t('df_ask.mention', {name: '@' + rec})
+				].join('');
 				if (r.raw) {
 					r.raw = mention(r.raw.trim(), "\n");
 				}

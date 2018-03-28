@@ -1,5 +1,6 @@
 en:
   js:
     df_ask:
-      composer_action_title: "Ask me a question"
       button_title: "Ask me a question"
+      composer_action_title: "Ask me a question"
+      mention: "question to: %{name}"
