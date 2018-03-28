@@ -11,7 +11,11 @@ export default {
 			const container = Discourse.__container__;
 			const route = container.lookup('route:application');
     		const composerController = route.controllerFor('composer');
-    		if (!Discourse.User.current()) {
+    		const user = this.get('args.model');
+			// 2018-03-28
+			// «How to programmatucally check in JavaScript
+			// whether the current Discourse user is authenticated?» https://discourse.pro/t/76
+			if (!Discourse.User.current()) {
 				route.send('showLogin');
 			}
 			else {
