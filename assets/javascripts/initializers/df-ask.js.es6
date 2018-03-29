@@ -32,7 +32,7 @@ export default {name: 'df-ask', initialize() {withPluginApi('0.1', api => {
 				// The `r.custom_fields` syntax will not add the custom field to the topic:
 				// it will add it to the post only.
 				var metaData = r.get('metaData') || r.metaData || Ember.Object.create();
-				metaData.set('df_ask__recipient', m.recipient);
+				metaData.set('df_ask__recipient', m.recipient.id);
 				r.set('metaData', metaData);
 				// 2018-03-28
 				// «User mention come in the beginning of the text question.
@@ -43,7 +43,7 @@ export default {name: 'df-ask', initialize() {withPluginApi('0.1', api => {
 					// «As mentioned in image there should be a sentence saying "question to"
 					// (This sentence will be translated)»:
 					// https://github.com/discourse-pro/df-ask/issues/2
-					I18n.t('df_ask.mention', {name: '@' + m.recipient})
+					I18n.t('df_ask.mention', {name: '@' + m.recipient.name})
 				].join('');
 				if (r.raw) {
 					r.raw = mention(r.raw.trim(), "\n");

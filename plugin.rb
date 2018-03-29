@@ -1,11 +1,34 @@
 # name: df-ask
 # about: «Ask me a question» plugin
-# version: 1.1.3
+# version: 1.1.4
 # authors: Dmitry Fedyuk
 # url: https://github.com/discourse-pro/df-ask
 register_asset 'stylesheets/main.scss'
 after_initialize do
-	add_permitted_post_create_param('custom_fields')
-	Post.register_custom_field_type('df_ask__recipient', :text)
-	PostRevisor.track_topic_field(:custom_fields)
+	add_to_class(:topic, :df_ask__recipient) do
+		@df_ask__recipient ||
+			if user_id = custom_fields['df_ask__recipient']
+			@df_ask__recipient = User.find_by(id: user_id)
+		end
+	end
+	add_to_class(:topic, :df_ask__preload_recipient) do |v|
+		@df_ask__recipient = v
+	end
+	add_to_class(:topic_view_serializer, :df_ask__recipient_id) do
+		id = object.topic.custom_fields['df_ask__recipient']
+		# a bit messy but race conditions can give us an array here, avoid
+		id && id.to_i rescue nil
+	end
+	add_to_serializer(:topic_view, :df_ask__recipient, false) do
+		if df_ask__recipient_id && user = User.find_by(id: df_ask__recipient_id)
+			{
+				username: user.username,
+				name: user.name,
+				avatar_template: user.avatar_template,
+			}
+		end
+	end
+	add_to_serializer(:topic_view, 'include_df_ask__recipient?') do
+		object.topic.custom_fields.keys.include?('df_ask__recipient')
+	end
 end

@@ -35,14 +35,11 @@ export default {
 					,metaData: {df: {
 						actionTitle: I18n.t('df_ask.composer_action_title')
 						//,avatar: user.avatar_template
-						,recipient: user.username
+						,recipient: {id: user.id, name: user.username}
 					}}
 				});
 			}
 		}
 	}
-	,shouldRender(args, component) {
-		//return component.siteSettings.my_plugin_enabled;
-		return true;
-	}
+	,shouldRender(args, component) {return true;}
 }
