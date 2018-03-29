@@ -7,8 +7,25 @@
 // 2018-03-29
 #topic-title.df-ask--topic-title {
 	> .container {
-		background: yellow; overflow: hidden; width: 89%;
-		> .title-wrapper {background: pink; float: left; width: 80%;}
-		> .df-ask--recipient {float: right; width: 20%;}
+		overflow: hidden; width: 89%;
+		> .title-wrapper {float: left; width: 80%;}
+		> .df-ask--recipient {
+			float: right;
+			width: 20%;
+			overflow: hidden;
+			> div {
+				float: left;
+				.names {
+					> span {
+						display: block;
+					}
+				}
+				.topic-avatar {
+					border-top: 0;
+					margin-right: 8px;
+					padding-top: 0;
+				}
+			}
+		}
 	}
 }
