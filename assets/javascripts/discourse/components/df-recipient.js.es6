@@ -5,7 +5,8 @@ export default Ember.Component.extend({
 		this._super();
 		const rec = this.topic.df_ask__recipient;
 		if (rec) {
-			this.set('df_ask__recipient', rec.username);
+			this.set('avatar', rec.username);
+			this.set('username', rec.username);
 		}
 	}
 });

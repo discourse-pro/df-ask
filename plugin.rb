@@ -1,6 +1,6 @@
 # name: df-ask
 # about: «Ask me a question» plugin
-# version: 1.1.5
+# version: 1.1.6
 # authors: Dmitry Fedyuk
 # url: https://github.com/discourse-pro/df-ask
 register_asset 'stylesheets/main.scss'
@@ -22,9 +22,10 @@ after_initialize do
 	add_to_serializer(:topic_view, :df_ask__recipient, false) do
 		if df_ask__recipient_id && user = User.find_by(id: df_ask__recipient_id)
 			{
-				username: user.username,
-				name: user.name,
 				avatar_template: user.avatar_template,
+				id: user.id,
+				name: user.name,
+				username: user.username,
 			}
 		end
 	end
