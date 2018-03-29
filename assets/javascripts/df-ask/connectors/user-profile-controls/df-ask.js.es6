@@ -34,6 +34,7 @@ export default {
 					// https://github.com/discourse/discourse/blob/90af1659/app/assets/javascripts/discourse/models/composer.js.es6#L507-L507
 					,metaData: {df: {
 						actionTitle: I18n.t('df_ask.composer_action_title')
+						//,avatar: user.avatar_template
 						,recipient: user.username
 					}}
 				});

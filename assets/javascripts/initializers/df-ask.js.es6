@@ -4,6 +4,8 @@ import ComposerController from 'discourse/controllers/composer';
 import {withPluginApi} from 'discourse/lib/plugin-api';
 import computed from 'ember-addons/ember-computed-decorators';
 export default {name: 'df-ask', initialize() {withPluginApi('0.1', api => {
+	// 2018-03-29
+	ComposerModel.serializeOnCreate('custom_fields');
 	// 2016-12-21 https://guides.emberjs.com/v2.4.0/object-model/reopening-classes-and-instances
 	ComposerModel.reopen({
 		/**
@@ -19,11 +21,19 @@ export default {name: 'df-ask', initialize() {withPluginApi('0.1', api => {
 		replyOptions(action, post, topic, topicTitle) {return Object.assign(
 			this._super(action, post, topic, topicTitle), {dfActionTitle: this.get('metaData.df.actionTitle')}
 		);},
-		serialize(serializer, dest) {
-			debugger;
-			var r = this._super(serializer, dest);
-			const rec = this.get('metaData.df.recipient');
-			if (rec) {
+		serialize(serializer, r) {
+			const m = this.get('metaData.df');
+			this._super(serializer, r);
+			if (m) {
+				// 2018-03-29
+				// This code adds the `df_ask__recipient` custom field to the current topic.
+				// If you need to add it to the current post, then use the following code instead:
+				//		r.custom_fields = _.extend(r.custom_fields || {}, {df_ask__recipient: m.recipient});
+				// The `r.custom_fields` syntax will not add the custom field to the topic:
+				// it will add it to the post only.
+				var metaData = r.get('metaData') || r.metaData || Ember.Object.create();
+				metaData.set('df_ask__recipient', m.recipient);
+				r.set('metaData', metaData);
 				// 2018-03-28
 				// «User mention come in the beginning of the text question.
 				// Can we make it after it (in the end of the text)?»
@@ -33,7 +43,7 @@ export default {name: 'df-ask', initialize() {withPluginApi('0.1', api => {
 					// «As mentioned in image there should be a sentence saying "question to"
 					// (This sentence will be translated)»:
 					// https://github.com/discourse-pro/df-ask/issues/2
-					I18n.t('df_ask.mention', {name: '@' + rec})
+					I18n.t('df_ask.mention', {name: '@' + m.recipient})
 				].join('');
 				if (r.raw) {
 					r.raw = mention(r.raw.trim(), "\n");
