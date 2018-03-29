@@ -1,7 +1,9 @@
-import ComposerModel from 'discourse/models/composer';
 import ComposerActionTitle from 'discourse/components/composer-action-title';
+import PluginOutlet from 'discourse/components/plugin-outlet';
+import TopicTitle from 'discourse/components/topic-title';
 import ComposerController from 'discourse/controllers/composer';
 import {withPluginApi} from 'discourse/lib/plugin-api';
+import ComposerModel from 'discourse/models/composer';
 import computed from 'ember-addons/ember-computed-decorators';
 export default {name: 'df-ask', initialize() {withPluginApi('0.1', api => {
 	// 2018-03-29
@@ -80,5 +82,31 @@ export default {name: 'df-ask', initialize() {withPluginApi('0.1', api => {
 		canEditTags(canEditTitle, creatingPrivateMessage) {return(
 			!this.get('model.metaData.df') && this._super(canEditTitle, creatingPrivateMessage)
 		);}
+	});
+	PluginOutlet.reopen({
+	   /**
+		* 2018-03-29
+		* @override
+		* https://github.com/discourse/discourse/blob/v2.0.0.beta5/app/assets/javascripts/discourse/components/plugin-outlet.js.es6#L38-L51
+		*/
+		init() {
+			// 2018-03-29
+			// https://github.com/discourse/discourse/blob/v2.0.0.beta5/app/assets/javascripts/discourse/components/plugin-outlet.js.es6#L39-L43
+			this.set('noTags', this.get('noTags') || 'topic-title' === this.get('name'));
+			this._super();
+		}
+	});
+	TopicTitle.reopen({
+	   /**
+		* 2018-03-29
+		* @override
+		* https://guides.emberjs.com/v2.13.0/components/the-component-lifecycle
+		*/
+		init() {
+			this._super();
+			if (this.model.df_ask__recipient) {
+				this.set('classNames', ['df-ask--topic-title']);
+			}
+		}
 	});
 });}};
