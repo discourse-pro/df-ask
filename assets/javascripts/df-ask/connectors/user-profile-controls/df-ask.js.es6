@@ -40,6 +40,17 @@ export default {
 				});
 			}
 		}
+	},
+	/**
+	 * 2018-03-30
+	 * "The «Ask me a question» button/tab should not be shown when a user views his own profile":
+	 * https://github.com/discourse-pro/df-ask/issues/4
+ 	 * @param args
+	 * @param component
+	 * @returns {boolean}
+	 */
+	shouldRender(args, component) {
+		const user = Discourse.User.current();
+		return !user || user.id !== args.model.id;
 	}
-	,shouldRender(args, component) {return true;}
 }
