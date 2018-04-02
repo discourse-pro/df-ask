@@ -4,6 +4,10 @@
 # authors: Dmitry Fedyuk
 # url: https://github.com/discourse-pro/df-ask
 register_asset 'stylesheets/main.scss'
+Discourse::Application.routes.append do
+	get 'users/:username/ask' => 'users#show', constraints: {username: USERNAME_ROUTE_FORMAT}
+	get 'u/:username/ask' => 'users#show', constraints: {username: USERNAME_ROUTE_FORMAT}
+end
 after_initialize do
 	add_to_class(:topic, :df_ask__recipient) do
 		@df_ask__recipient ||
