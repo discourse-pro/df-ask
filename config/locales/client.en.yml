@@ -4,3 +4,4 @@ en:
       button_title: "Ask me a question"
       composer_action_title: "Ask me a question"
       mention: "question to: %{name}"
+      tab_title: "Ask me"
