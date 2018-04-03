@@ -25,7 +25,14 @@ export default {name: 'df-ask', initialize() {withPluginApi('0.1', api => {
 		);},
 		serialize(serializer, r) {
 			const m = this.get('metaData.df');
-			this._super(serializer, r);
+			/**
+			 * 2018-04-04
+			 * The `r` argument can be `undefined`, so we need explicilty to reassign it
+			 * from the `this._super()` result.
+			 * «Unable to edit existing posts»: https://github.com/discourse-pro/df-ask/issues/10
+			 * https://github.com/discourse/discourse/blob/v2.0.0.beta5/app/assets/javascripts/discourse/models/composer.js.es6#L637-L646
+			 */
+			r = this._super(serializer, r);
 			if (m) {
 				// 2018-03-29
 				// This code adds the `df_ask__recipient` custom field to the current topic.
