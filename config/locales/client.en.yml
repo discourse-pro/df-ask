@@ -1,7 +1,7 @@
 en:
   js:
     df_ask:
-      button_title: "Ask me a question"
       composer_action_title: "Ask me a question"
+      description: "A text for the «Ask me» tab"
       mention: "question to: %{name}"
-      tab_title: "Ask me"
+      tab: "Ask me"
