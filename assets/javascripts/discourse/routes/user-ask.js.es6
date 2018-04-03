@@ -1,10 +1,7 @@
 import Composer from 'discourse/models/composer';
-// 2018-03-22
-// 1) «Important changes to Plugin Outlets for Ember 2.10»: https://meta.discourse.org/t/54136
-// 2) «How to add a button to user profiles?»: https://discourse.pro/t/288
-export default {
+export default Discourse.Route.extend({
 	actions: {
-		onClick() {
+		showComposer(user) {
 			// 2018-03-23
 			// I implemented the controller retrieving by analogy with
 			// https://github.com/vinkashq/discourse-content_lockers/blob/8996e438/assets/javascripts/discourse/lib/show-lockable-modal.js.es6#L3-L8
@@ -18,10 +15,6 @@ export default {
 				route.send('showLogin');
 			}
 			else {
-				// 2018-03-21
-				// I implemented it by analogy with
-				// https://github.com/discourse/discourse-staff-notes/blob/e59507e3/assets/javascripts/discourse-staff-notes/connectors/user-profile-controls/show-notes-on-profile.js.es6#L21-L21
-				const user = this.get('args.model');
 				// 2018-03-23
 				// I implemented it by analogy with
 				// https://github.com/discourse/discourse/blob/v2.0.0.beta4/app/assets/javascripts/discourse/routes/application.js.es6#L56-L69
@@ -34,23 +27,10 @@ export default {
 					// https://github.com/discourse/discourse/blob/90af1659/app/assets/javascripts/discourse/models/composer.js.es6#L507-L507
 					,metaData: {df: {
 						actionTitle: I18n.t('df_ask.composer_action_title')
-						//,avatar: user.avatar_template
 						,recipient: {id: user.id, name: user.username}
 					}}
 				});
 			}
 		}
-	},
-	/**
-	 * 2018-03-30
-	 * "The «Ask me a question» button/tab should not be shown when a user views his own profile":
-	 * https://github.com/discourse-pro/df-ask/issues/4
- 	 * @param args
-	 * @param component
-	 * @returns {boolean}
-	 */
-	shouldRender(args, component) {
-		const user = Discourse.User.current();
-		return !user || user.id !== args.model.id;
 	}
-}
+});
