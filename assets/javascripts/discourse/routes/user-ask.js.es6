@@ -23,31 +23,24 @@ export default Discourse.Route.extend({
 	 */
 	route() {return Discourse.__container__.lookup('route:application');},
 	actions: {
-		showComposer(user) {
-			// 2018-03-28
-			// «How to programmatucally check in JavaScript
-			// whether the current Discourse user is authenticated?» https://discourse.pro/t/76
-			if (!Discourse.User.current()) {
-				this.route().send('showLogin');
-			}
-			else {
-				// 2018-03-23
-				// I implemented it by analogy with
-				// https://github.com/discourse/discourse/blob/v2.0.0.beta4/app/assets/javascripts/discourse/routes/application.js.es6#L56-L69
-				return this.composer().open({
-					action: Composer.CREATE_TOPIC
-					,draftKey: Composer.CREATE_TOPIC
-					,draftSequence: 0
-					,reply: null
-					// 2018-03-23
-					// https://github.com/discourse/discourse/blob/90af1659/app/assets/javascripts/discourse/models/composer.js.es6#L507-L507
-					,metaData: {df: {
-						actionTitle: I18n.t('df_ask.composer_action_title')
-						,recipient: {id: user.id, name: user.username}
-					}}
-				});
-			}
-		},
+		// 2018-03-28
+		// «How to programmatucally check in JavaScript
+		// whether the current Discourse user is authenticated?» https://discourse.pro/t/76
+		// 2018-03-23
+		// I implemented it by analogy with
+		// https://github.com/discourse/discourse/blob/v2.0.0.beta4/app/assets/javascripts/discourse/routes/application.js.es6#L56-L69
+		showComposer(user) {return this.composer().open({
+			action: Composer.CREATE_TOPIC
+			,draftKey: Composer.CREATE_TOPIC
+			,draftSequence: 0
+			,reply: null
+			// 2018-03-23
+			// https://github.com/discourse/discourse/blob/90af1659/app/assets/javascripts/discourse/models/composer.js.es6#L507-L507
+			,metaData: {df: {
+				actionTitle: I18n.t('df_ask.composer_action_title')
+				,recipient: {id: user.id, name: user.username}
+			}}
+		});},
 		/**
 		 * 2018-04-04
 		 * @override
