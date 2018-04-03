@@ -11,3 +11,6 @@ The influencer receives a notification:
 The question is published in the selected category.  
 The influencer is automatically mentioned in the question:  
 ![](https://discourse.pro/uploads/default/original/1X/913188f74eff56086de564834b914faca522ecbc.png)
+
+An influencer can setup a custom text which will be shown on the «**Ask me**» screen:
+![](https://discourse.pro/uploads/default/original/1X/90704e80892a9eb1622d342b9d4b11341cf5ef9d.png)
