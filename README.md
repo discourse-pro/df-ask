@@ -3,7 +3,7 @@
 This plugin allow users (we will call them influencers here) to add question form in their profile to let other users ask them questions.   
 
 Users can go directly to influencer profile and ask question by entering Title, Selecting category and posting text and send the question.   
-![](https://discourse.pro/uploads/default/original/1X/11688b48367257d51cdb63d46437e4bab8074091.png)
+![](https://discourse.pro/uploads/default/original/1X/b28205b8e725dd642cf499790b5ca51b7a4a9fae.png)
 
 The influencer receives a notification:  
 ![](https://discourse.pro/uploads/default/original/1X/3f122b582f993fa1bf3d9430a18b07fd67263b11.png)
