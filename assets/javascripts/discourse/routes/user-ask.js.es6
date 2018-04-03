@@ -1,5 +1,15 @@
 import Composer from 'discourse/models/composer';
 export default Discourse.Route.extend({
+	/**
+	 * 2018-04-03
+	 * @override
+	 * https://stackoverflow.com/a/39863795
+	 */
+	activate() {
+		this._super(...arguments);
+		let root = Ember.getOwner(this).get('rootElement');
+		Ember.$(root).addClass('df-ask-screen');
+	},
 	actions: {
 		showComposer(user) {
 			// 2018-03-23

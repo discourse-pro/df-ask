@@ -1,9 +1,3 @@
-.user-main .about {
-	// 2018-03-23 It is 180px in the core.
-	.controls {width: auto;}
-	// 2018-03-23 It is 140px in the core.
-	.user-profile-controls-outlet.df-ask a {width: auto;}
-}
 // 2018-03-29
 #topic-title.df-ask--topic-title {
 	> .container {
@@ -29,3 +23,5 @@
 		}
 	}
 }
+// 2018-04-03 «Increase Composer height»: https://github.com/discourse-pro/df-ask/issues/9
+.df-ask-screen #reply-control.open {height: 600px;}
