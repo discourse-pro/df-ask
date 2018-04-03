@@ -10,25 +10,31 @@ export default Discourse.Route.extend({
 		let root = Ember.getOwner(this).get('rootElement');
 		Ember.$(root).addClass('df-ask-screen');
 	},
+	/**
+	 * 2018-03-23
+	 * I implemented the controller retrieving by analogy with
+	 * https://github.com/vinkashq/discourse-content_lockers/blob/8996e438/assets/javascripts/discourse/lib/show-lockable-modal.js.es6#L3-L8
+	 */
+	composer() {return this.route().controllerFor('composer');},
+	/**
+	 * 2018-03-23
+	 * I implemented the controller retrieving by analogy with
+	 * https://github.com/vinkashq/discourse-content_lockers/blob/8996e438/assets/javascripts/discourse/lib/show-lockable-modal.js.es6#L3-L8
+	 */
+	route() {return Discourse.__container__.lookup('route:application');},
 	actions: {
 		showComposer(user) {
-			// 2018-03-23
-			// I implemented the controller retrieving by analogy with
-			// https://github.com/vinkashq/discourse-content_lockers/blob/8996e438/assets/javascripts/discourse/lib/show-lockable-modal.js.es6#L3-L8
-			const container = Discourse.__container__;
-			const route = container.lookup('route:application');
-			const composerController = route.controllerFor('composer');
 			// 2018-03-28
 			// «How to programmatucally check in JavaScript
 			// whether the current Discourse user is authenticated?» https://discourse.pro/t/76
 			if (!Discourse.User.current()) {
-				route.send('showLogin');
+				this.route().send('showLogin');
 			}
 			else {
 				// 2018-03-23
 				// I implemented it by analogy with
 				// https://github.com/discourse/discourse/blob/v2.0.0.beta4/app/assets/javascripts/discourse/routes/application.js.es6#L56-L69
-				return composerController.open({
+				return this.composer().open({
 					action: Composer.CREATE_TOPIC
 					,draftKey: Composer.CREATE_TOPIC
 					,draftSequence: 0
@@ -41,6 +47,15 @@ export default Discourse.Route.extend({
 					}}
 				});
 			}
+		},
+		/**
+		 * 2018-04-04
+		 * @override
+		 * https://guides.emberjs.com/v2.13.0/routing/preventing-and-retrying-transitions/#toc_preventing-transitions-via-code-willtransition-code
+		 */
+		willTransition() {
+			this.composer().cancelComposer();
+			return true;
 		}
 	}
 });

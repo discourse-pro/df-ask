@@ -23,5 +23,7 @@
 		}
 	}
 }
-// 2018-04-03 «Increase Composer height»: https://github.com/discourse-pro/df-ask/issues/9
+// 2018-04-03
+// «Increase Composer height»: https://github.com/discourse-pro/df-ask/issues/9
+// It is 400px in the core: https://github.com/discourse/discourse/blob/v2.0.0.beta5/app/assets/stylesheets/common/base/compose.scss#L43-L48
 .df-ask-screen #reply-control.open {height: 600px;}
