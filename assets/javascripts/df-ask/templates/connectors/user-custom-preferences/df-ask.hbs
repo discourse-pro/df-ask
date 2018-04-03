@@ -1,5 +1,17 @@
-<div class='control-group pref-bio'>
+{{!-- 2018-04-03
+I have implemented it by analogy with:
+1) The «About me» built-in Composer control:
+"How is the «About me» user's profile field implemented?": https://discourse.pro/t/302
+2) The `discourse-signatures` plugin's «My Signature» Composer control:
+https://github.com/discourse/discourse-signatures/blob/3b61cf4a/assets/javascripts/discourse/templates/connectors/user-custom-preferences/signature-preferences.hbs#L1-L23
+--}}
+<div class='control-group'>
 	<label class='control-label'>{{i18n 'df_ask.description'}}</label>
+{{!-- 2018-04-03
+The `bio-composer` CSS class is used only for styling:
+it inherits the styles of the «About me» built-in Composer control:
+https://github.com/discourse/discourse/blob/v2.0.0.beta5/app/assets/stylesheets/common/d-editor.scss#L157-L185
+--}}
 	<div class='controls bio-composer input-xxlarge'>
 		{{d-editor value=model.custom_fields.df_ask_description_raw}}
 	</div>
