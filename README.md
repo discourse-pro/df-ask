@@ -13,6 +13,6 @@ The influencer is automatically mentioned in the question:
 ![](https://discourse.pro/uploads/default/original/1X/913188f74eff56086de564834b914faca522ecbc.png)
 
 An influencer can setup a custom text which will be shown on the «**Ask me**» screen:
-![](https://discourse.pro/uploads/default/original/1X/90704e80892a9eb1622d342b9d4b11341cf5ef9d.png)
+![](https://discourse.pro/uploads/default/original/1X/404469797ac513efc72dd0c6839c42ec59a9e90b.png)
 
 ![](https://discourse.pro/uploads/default/original/1X/30912ef5815331f164a0fc33dda593d896a6daff.png)
