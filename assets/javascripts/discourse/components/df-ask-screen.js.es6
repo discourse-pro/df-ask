@@ -6,6 +6,7 @@ export default Ember.Component.extend({
 	*/
 	didRender() {
 		this._super();
+		debugger;
 		this.sendAction('show', this._targetObject.model);
 	},
 	tagName: ''

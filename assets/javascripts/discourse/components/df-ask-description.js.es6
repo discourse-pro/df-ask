@@ -1,6 +1,6 @@
 export default Ember.Component.extend({
 	classNames: ['df-ask--recipient'],
-	tagName: 'div',
+	tagName: '',
    /**
 	* 2018-04-03
 	* @override
@@ -8,10 +8,6 @@ export default Ember.Component.extend({
 	*/
 	didInsertElement() {
 		this._super();
-		const rec = this.topic.df_ask__recipient;
-		if (rec) {
-			this.set('avatar', rec.username);
-			this.set('username', rec.username);
-		}
+		this.set('description', this._targetObject.model.get('custom_fields.df_ask_description_cooked'));
 	}
 });
