@@ -2,6 +2,10 @@ en:
   js:
     df_ask:
       composer_action_title: "Ask me a question"
-      description: "A text for the «Ask me» tab"
       mention: "question to: %{name}"
+      settings:
+        label:
+          description: "A text for the «Ask me» tab"
+          url: "Your «Ask me» page URL"
+        title: "Ask me"
       tab: "Ask me"
