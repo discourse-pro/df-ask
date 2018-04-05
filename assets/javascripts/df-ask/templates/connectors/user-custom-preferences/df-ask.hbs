@@ -5,6 +5,13 @@ I have implemented it by analogy with:
 2) The `discourse-signatures` plugin's «My Signature» Composer control:
 https://github.com/discourse/discourse-signatures/blob/3b61cf4a/assets/javascripts/discourse/templates/connectors/user-custom-preferences/signature-preferences.hbs#L1-L23
 --}}
+<h2>Ask me</h2>
+<div class='control-group'>
+	<label class='control-label'>Your «Ask me» page URL</label>
+	<div class='controls'>
+		{{input type='text' value=url class='input-xxlarge' disabled='disabled'}}
+	</div>
+</div>
 <div class='control-group'>
 	<label class='control-label'>{{i18n 'df_ask.description'}}</label>
 {{!-- 2018-04-03
