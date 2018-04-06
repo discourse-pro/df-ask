@@ -1,11 +1,11 @@
 en:
   js:
     df_ask:
-      composer_action_title: "إسألني"
-      mention: "السؤال موجه للمستخدم: %{name}"
+      composer_action_title: "Ask me a question"
+      mention: "question to: %{name}"
       settings:
         label:
-          description: "أكتب نبذة مختصرة عنك وخبراتك السياحية والدول التي زرتها"
-          url: "رابط صفحة إسألني (يمكنك نشر الرابط في الشبكات الاجتماعية)"
-        title: "إسأل %{name} سؤال سياحي"
-      tab: "إسأل %{name} استفسار سياحي"
+          description: "A text for the «Ask me» tab"
+          url: "Your «Ask me» page URL"
+        title: "Ask me"
+      tab: "Ask me"
